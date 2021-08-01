@@ -9,7 +9,7 @@
 <meta name="description" content="千里之行，始于足下">
 <meta name="theme-color" content="#000">
 <title>geronk学习笔记</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1627788670618">
+<link rel="shortcut icon" href="/favicon.ico?v=1627789931065">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -504,18 +504,16 @@
 &lt;p&gt;mockito模拟获取数据库连接，测试用户登录场景&lt;br&gt;
 3.1 新建Account.java、AccountDao.java、AccountLoginController.java、AccountLoginControllerTest.java类&lt;br&gt;
 AccountDao.java：&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    public class AccountDao {
+&lt;pre&gt;&lt;code&gt;public class AccountDao {
 
-         public Account findAccount(String userName,String password){
+        public Account findAccount(String userName,String password){
                 throw new UnsupportedOperationException();
         }
-    } 
+} 
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;AccountLoginController.java:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    public class AccountLoginController {
+&lt;pre&gt;&lt;code&gt;public class AccountLoginController {
     private AccountDao accountDao;
 
     public AccountLoginController(AccountDao accountDao) {
@@ -540,8 +538,8 @@ AccountDao.java：&lt;/p&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;AccountLoginControllerTest.java:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;   @RunWith(MockitoJUnitRunner.class)
-   public class AccountLoginControllerTest {
+&lt;pre&gt;&lt;code&gt;@RunWith(MockitoJUnitRunner.class)
+ public class AccountLoginControllerTest {
     private AccountDao accountDao;
 
     private HttpServletRequest request;
@@ -571,6 +569,8 @@ AccountDao.java：&lt;/p&gt;
 }
 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 ">Mockito</a>
       </div>
       
