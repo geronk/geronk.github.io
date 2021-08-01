@@ -9,7 +9,7 @@
 <meta name="description" content="千里之行，始于足下">
 <meta name="theme-color" content="#000">
 <title>geronk学习笔记</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1627784724760">
+<link rel="shortcut icon" href="/favicon.ico?v=1627788670618">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -520,8 +520,77 @@
  	&amp;lt;/dependency&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;mockito模拟获取数据库连接，测试用户登录场景&lt;br&gt;
+3.1 新建Account.java、AccountDao.java、AccountLoginController.java、AccountLoginControllerTest.java类&lt;br&gt;
+AccountDao.java：&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;    public class AccountDao {
+
+         public Account findAccount(String userName,String password){
+                throw new UnsupportedOperationException();
+        }
+    } 
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;AccountLoginController.java:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    public class AccountLoginController {
+    private AccountDao accountDao;
+
+    public AccountLoginController(AccountDao accountDao) {
+        this.accountDao = accountDao;
+    }
+
+    public String login(HttpServletRequest request){
+        final String userName = request.getParameter(&amp;quot;userName&amp;quot;);
+        final String password = request.getParameter(&amp;quot;password&amp;quot;);
+        try {
+            Account account = accountDao.findAccount(userName,password);
+            if(account == null){
+                return &amp;quot;login&amp;quot;;
+            }else{
+                return &amp;quot;index&amp;quot;;
+            }
+        }catch (Exception e){
+            return &amp;quot;505&amp;quot;;
+        }
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;AccountLoginControllerTest.java:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   @RunWith(MockitoJUnitRunner.class)
+   public class AccountLoginControllerTest {
+    private AccountDao accountDao;
+
+    private HttpServletRequest request;
+
+    private AccountLoginController accountLoginController;
+
+    //@Before注解 ，下面@Test注解下的方法执行前，都会先执行Before注解下的方法
+    @Before
+    public void setUp(){
+        //Mockito.mock 出AccountDao对象，此时mock出来的对象相当于原对象的替身
+        this.accountDao = Mockito.mock(AccountDao.class);
+        this.request = Mockito.mock(HttpServletRequest.class);
+        this.accountLoginController = new AccountLoginController(accountDao);
+    }
+
+    @Test
+    public void testLoginOne(){
+        //使用Mockito.when() mock出你想要模拟对象所做的操作，然后返回该操作的植
+        Mockito.when(request.getParameter(&amp;quot;userName&amp;quot;)).thenReturn(&amp;quot;zhangsan&amp;quot;);
+        Mockito.when(request.getParameter(&amp;quot;password&amp;quot;)).thenReturn(&amp;quot;123456&amp;quot;);
+        Account account = new Account();
+        //anyString() 匹配任何String类型的参数
+        Mockito.when(accountDao.findAccount(anyString(),anyString())).thenReturn(account);
+        //assertThat(实际值,期望值)
+        assertThat(accountLoginController.login(request),equalTo(&amp;quot;index&amp;quot;));
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
 ">Mockito</a>
       </div>
       
