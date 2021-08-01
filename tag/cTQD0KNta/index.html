@@ -9,7 +9,7 @@
 <meta name="description" content="千里之行，始于足下">
 <meta name="theme-color" content="#000">
 <title>geronk学习笔记</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1627804796382">
+<link rel="shortcut icon" href="/favicon.ico?v=1627808248841">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -812,7 +812,7 @@ AccountDao.java：&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;mockito stubbing&lt;br&gt;
+&lt;p&gt;mockito的stubbing&lt;br&gt;
 stubbing -打桩是一个形象的说法，就是把所需的测试数据塞进对象中，适用于基于状态的（state-based）测试，关注的是输入和输出。Mockito stubbing 打桩功能可以使被打桩的方法调用返回期望的值。Mockito通过Mockito.when().thenReturn()实现打桩功能,在when中定义对象方法和参数（输入）,然后在 thenReturn 中指定结果（输出）。一旦这个方法被 stub 了，就会一直返回这个 stub 的值。&lt;br&gt;
 Stubbing主要包括如下几个关键方法:&lt;/p&gt;
 &lt;ul&gt;
@@ -886,6 +886,51 @@ Stubbing主要包括如下几个关键方法:&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这种写法：when(list.size()).thenReturn(1,2,3,4);  等价于 when(list.size()).thenReturn(1).thenReturn(2).thenReturn(3).thenReturn(4);&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mockito的spying()&lt;br&gt;
+mockito的spying()做的是部分的mock。&lt;br&gt;
+创建一个spying()测试类SpyingTest.java：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    @RunWith(MockitoJUnitRunner.class)
+    public class SpyingTest {
+        @Test
+        public void testSpy(){
+            List&amp;lt;String&amp;gt; realList = new ArrayList&amp;lt;&amp;gt;();
+            List&amp;lt;String&amp;gt; list = spy(realList);
+            list.add(&amp;quot;11&amp;quot;);
+            list.add(&amp;quot;22&amp;quot;);
+            assertThat(list.get(0),equalTo(&amp;quot;11&amp;quot;));
+            assertThat(list.isEmpty(),equalTo(false));
+
+            when(list.isEmpty()).thenReturn(true);
+            when(list.size()).thenReturn(0);
+            assertThat(list.get(1),equalTo(&amp;quot;22&amp;quot;));
+            assertThat(list.isEmpty(),equalTo(true));
+            assertThat(list.size(),equalTo(0));
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;spying()注解的方式如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    @RunWith(MockitoJUnitRunner.class)
+    public class SpyAnnotationTest {
+        @Spy
+        private List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();
+
+        @Test
+        public void testSpy(){
+            list.add(&amp;quot;11&amp;quot;);
+            list.add(&amp;quot;22&amp;quot;);
+            assertThat(list.get(0),equalTo(&amp;quot;11&amp;quot;));
+            assertThat(list.isEmpty(),equalTo(false));
+
+            when(list.isEmpty()).thenReturn(true);
+            when(list.size()).thenReturn(0);
+            assertThat(list.get(1),equalTo(&amp;quot;22&amp;quot;));
+            assertThat(list.isEmpty(),equalTo(true));
+            assertThat(list.size(),equalTo(0));
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 ">Mockito</a>
