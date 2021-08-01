@@ -9,7 +9,7 @@
 <meta name="description" content="千里之行，始于足下">
 <meta name="theme-color" content="#000">
 <title>geronk学习笔记</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1627789931065">
+<link rel="shortcut icon" href="/favicon.ico?v=1627791581449">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -173,7 +173,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">1</span>
+        <span class="site-item-stat-count">2</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -227,7 +227,11 @@
           
             
       
-      <a class="cloud-tag" href="https://geronk.github.io/tag/cTQD0KNta/" rel="1">测试</a>
+        
+          
+            
+      
+      <a class="cloud-tag" href="https://geronk.github.io/tag/cTQD0KNta/" rel="2">测试</a>
     
   </div>
 </div>
@@ -513,6 +517,127 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://geronk.github.io/post/assertthat-yong-fa/"" data-c="
+          &lt;h2 id=&#34;语法&#34;&gt;语法&lt;/h2&gt;
+&lt;h3 id=&#34;一般匹配符&#34;&gt;一般匹配符&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedNumber, allOf( greaterThan(8), lessThan(16) ) );&lt;br&gt;
+注释： allOf匹配符表明如果接下来的所有条件必须都成立测试才通过，相当于“与”（&amp;amp;&amp;amp;）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedNumber, anyOf( greaterThan(16), lessThan(8) ) );&lt;br&gt;
+注释：anyOf匹配符表明如果接下来的所有条件只要有一个成立则测试通过，相当于“或”（||）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedNumber, anything() );&lt;br&gt;
+注释：anything匹配符表明无论什么条件，永远为true&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedString, is( “developerWorks” ) );&lt;br&gt;
+注释： is匹配符表明如果前面待测的object等于后面给出的object，则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedString, not( “developerWorks” ) );&lt;br&gt;
+注释：not匹配符和is匹配符正好相反，表明如果前面待测的object不等于后面给出的object，则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;字符串相关匹配符&#34;&gt;字符串相关匹配符&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedString, containsString( “developerWorks” ) );&lt;br&gt;
+注释：containsString匹配符表明如果测试的字符串testedString包含子字符串”developerWorks”则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedString, endsWith( “developerWorks” ) );&lt;br&gt;
+注释：endsWith匹配符表明如果测试的字符串testedString以子字符串”developerWorks”结尾则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedString, startsWith( “developerWorks” ) );&lt;br&gt;
+注释：startsWith匹配符表明如果测试的字符串testedString以子字符串”developerWorks”开始则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedValue, equalTo( expectedValue ) );&lt;br&gt;
+注释： equalTo匹配符表明如果测试的testedValue等于expectedValue则测试通过，equalTo可以测试数值之间，字符串之间和对象之间是否相等，相当于Object的equals方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedString, equalToIgnoringCase( “developerWorks” ) );&lt;br&gt;
+注释：equalToIgnoringCase匹配符表明如果测试的字符串testedString在忽略大小写的情况下等于”developerWorks”则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedString, equalToIgnoringWhiteSpace( “developerWorks” ) );&lt;br&gt;
+注释：equalToIgnoringWhiteSpace匹配符表明如果测试的字符串testedString在忽略头尾的任意个空格的情况下等于”developerWorks”则测试通过，注意：字符串中的空格不能被忽略&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;数值相关匹配符&#34;&gt;数值相关匹配符&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedDouble, closeTo( 20.0, 0.5 ) );&lt;br&gt;
+注释：closeTo匹配符表明如果所测试的浮点型数testedDouble在20.0±0.5范围之内则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedNumber, greaterThan(16.0) );&lt;br&gt;
+注释：greaterThan匹配符表明如果所测试的数值testedNumber大于16.0则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedNumber, lessThan (16.0) );&lt;br&gt;
+注释：lessThan匹配符表明如果所测试的数值testedNumber小于16.0则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedNumber, greaterThanOrEqualTo (16.0) );&lt;br&gt;
+注释： greaterThanOrEqualTo匹配符表明如果所测试的数值testedNumber大于等于16.0则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( testedNumber, lessThanOrEqualTo (16.0) );&lt;br&gt;
+注释：lessThanOrEqualTo匹配符表明如果所测试的数值testedNumber小于等于16.0则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;collection相关匹配符&#34;&gt;collection相关匹配符&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( mapObject, hasEntry( “key”, “value” ) );&lt;br&gt;
+注释：hasEntry匹配符表明如果测试的Map对象mapObject含有一个键值为”key”对应元素值为”value”的Entry项则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( iterableObject, hasItem ( “element” ) );&lt;br&gt;
+注释：hasItem匹配符表明如果测试的迭代对象iterableObject含有元素“element”项则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( mapObject, hasKey ( “key” ) );&lt;br&gt;
+注释： hasKey匹配符表明如果测试的Map对象mapObject含有键值“key”则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;assertThat( mapObject, hasValue ( “key” ) );&lt;br&gt;
+注释：hasValue匹配符表明如果测试的Map对象mapObject含有元素值“value”则测试通过&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;具体使用步骤&#34;&gt;具体使用步骤&lt;/h2&gt;
+&lt;p&gt;例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//Get number from [p, r]  
+ int getRandomFrom(int p, int r){  
+     int chooes = r-p+1;  
+     return (int) Math.floor(Math.random() * chooes + p);  
+ }  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;第一步引入类或static方法&#34;&gt;第一步：引入类或static方法&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;import static org.junit.Assert.*;  
+
+import static org.hamcrest.CoreMatchers.*;  
+
+import static org.junit.matchers.JUnitMatchers.*; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;第二步测试方法&#34;&gt;第二步：测试方法&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;@Test  
+public void testGetRandomFrom(){  
+    for(int i=0 ; i&amp;lt;100 ; i++){  
+         assertThat(quickSort.getRandomFrom(5, 10),  anyOf(equalTo(5),equalTo(6),equalTo(7),equalTo(8),equalTo(9),equalTo(10)));  
+    }  
+ } 
+&lt;/code&gt;&lt;/pre&gt;
+">assertThat用法</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://geronk.github.io/post/mockito/"" data-c="
