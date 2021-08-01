@@ -9,7 +9,7 @@
 <meta name="description" content="千里之行，始于足下">
 <meta name="theme-color" content="#000">
 <title>assertThat用法 | geronk学习笔记</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1627791581449">
+<link rel="shortcut icon" href="/favicon.ico?v=1627804796382">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1352,8 +1352,9 @@ AccountDao.java：&lt;/p&gt;
         this.accountLoginController = new AccountLoginController(accountDao);
     }
 
+    //测试登录成功用例
     @Test
-    public void testLoginOne(){
+    public void testLoginSuccess(){
         //使用Mockito.when() mock出你想要模拟对象所做的操作，然后返回该操作的植
         Mockito.when(request.getParameter(&amp;quot;userName&amp;quot;)).thenReturn(&amp;quot;zhangsan&amp;quot;);
         Mockito.when(request.getParameter(&amp;quot;password&amp;quot;)).thenReturn(&amp;quot;123456&amp;quot;);
@@ -1361,11 +1362,191 @@ AccountDao.java：&lt;/p&gt;
         //anyString() 匹配任何String类型的参数
         Mockito.when(accountDao.findAccount(anyString(),anyString())).thenReturn(account);
         //assertThat(实际值,期望值)
-        assertThat(accountLoginController.login(request),equalTo(&amp;quot;index&amp;quot;));
+        assertThat(accountLoginController.login(request),equalTo(&amp;quot;index&amp;quot;);
+    }
+}
+
+    //测试登录失败用例
+    @Test
+    public void testLoginFail(){
+        //使用Mockito.when() mock出你想要模拟对象所做的操作，然后返回该操作的植
+        Mockito.when(request.getParameter(&amp;quot;userName&amp;quot;)).thenReturn(&amp;quot;zhangsan&amp;quot;);
+        Mockito.when(request.getParameter(&amp;quot;password&amp;quot;)).thenReturn(&amp;quot;123456&amp;quot;);
+        Account account = new Account();
+        //anyString() 匹配任何String类型的参数
+        Mockito.when(accountDao.findAccount(anyString(),anyString())).thenReturn(null);
+        //assertThat(实际值,期望值)
+        assertThat(accountLoginController.login(request),equalTo(&amp;quot;login&amp;quot;);
+    }
+}
+
+    //测试登录异常用例
+    @Test
+    public void testLoginFail(){
+        //使用Mockito.when() mock出你想要模拟对象所做的操作，然后返回该操作的植
+        Mockito.when(request.getParameter(&amp;quot;userName&amp;quot;)).thenReturn(&amp;quot;zhangsan&amp;quot;);
+        Mockito.when(request.getParameter(&amp;quot;password&amp;quot;)).thenReturn(&amp;quot;123456&amp;quot;);
+        Account account = new Account();
+        //anyString() 匹配任何String类型的参数
+        Mockito.when(accountDao.findAccount(anyString(),anyString())).thenThrow(UnsupportedOperationException.class);
+        //assertThat(实际值,期望值)
+        assertThat(accountLoginController.login(request),equalTo(&amp;quot;505&amp;quot;);
     }
 }
 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用mockito mock一个类&lt;br&gt;
+方式一：使用@RunWith(MockitoJUnitRunner.class)注解&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; @RunWith(MockitoJUnitRunner.class)
+  public class AccountLoginControllerTest {
+      @Test
+      public void testMock(){
+            AccountDao accountDao = mock(AccountDao.class);
+      }
+  }    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;方式二：使用Annotation(注解)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    public class MockByAnnotationTest {
+
+        @Before
+        public void init(){
+            MockitoAnnotations.initMocks(this);
+        }
+        //@Mock(answer = Answers.RETURNS_SMART_NULLS) MOCK结果返回写法    
+        @Mock
+        private AccountDao accountDao;
+
+        @Test
+        public void testMock(){
+            accountDao.findAccount(&amp;quot;lisi&amp;quot;,&amp;quot;123456&amp;quot;);
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;方式三：使用junit的rule&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class MockByRuleTest {
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+    @Mock
+    private AccountDao accountDao;
+
+    @Test
+    public void restMock(){
+//        AccountDao accountDao = mock(AccountDao.class);
+        System.out.println(accountDao.findAccount(&amp;quot;lisi&amp;quot;,&amp;quot;123456&amp;quot;));
+    }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;deepMock&lt;br&gt;
+创建AccountService.java&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class AccountService {
+    public Account getAccount(){
+        throw new RuntimeException();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;给Account.java添加一个方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  public String doAccount(){
+    throw new RuntimeException();
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;编写deepMockTest测试类&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; public class DeepMockTest {
+    @Mock(answer = Answers.RETURNS_DEEP_STUBS)
+    private AccountService accountService;
+
+    @Before
+    public void init(){
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    public void testMock(){
+        String res =  accountService.getAccount().doAccount();
+        System.out.println(res);
+    }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;mockito stubbing&lt;br&gt;
+stubbing -打桩是一个形象的说法，就是把所需的测试数据塞进对象中，适用于基于状态的（state-based）测试，关注的是输入和输出。Mockito stubbing 打桩功能可以使被打桩的方法调用返回期望的值。Mockito通过Mockito.when().thenReturn()实现打桩功能,在when中定义对象方法和参数（输入）,然后在 thenReturn 中指定结果（输出）。一旦这个方法被 stub 了，就会一直返回这个 stub 的值。&lt;br&gt;
+Stubbing主要包括如下几个关键方法:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;when()&lt;/li&gt;
+&lt;li&gt;thenReturn()&lt;/li&gt;
+&lt;li&gt;thenThrow()&lt;/li&gt;
+&lt;li&gt;doNothing()&lt;/li&gt;
+&lt;li&gt;doThrow()&lt;/li&gt;
+&lt;li&gt;doReturn()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;新建一个stubbing测试类：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class MockStubbingTest {
+    private List&amp;lt;String&amp;gt; list;
+
+    @Before
+    public void init(){
+        MockitoAnnotations.initMocks(this);
+        this.list = mock(ArrayList.class);
+    }
+
+    @Test
+    public void testStubbing(){
+        when(list.get(0)).thenReturn(&amp;quot;first&amp;quot;);
+        assertThat(list.get(0),equalTo(&amp;quot;first&amp;quot;));
+    }
+
+    @Test
+    public void testStubbingVoidMethod(){
+        //doNothing() 执行void方法的时候，无返回值的情况，使用verify()验证目标方法是否执行
+        //times()是verify()后面的方法期望执行的次数
+        doNothing().when(list).clear();
+        list.clear();
+        verify(list,times(1)).clear();
+        //抛异常的场景
+        doThrow(RuntimeException.class).when(list).clear();
+        try{
+            list.clear();
+            fail();
+        }catch (Exception e){
+            assertThat(e,instanceOf(RuntimeException.class));
+        }
+    }
+
+    //doReturn().when() ...
+    @Test
+    public void testDoReturn(){
+        doReturn(&amp;quot;2&amp;quot;).when(list).get(1);
+        assertThat(&amp;quot;2&amp;quot;,equalTo(list.get(1)));
+    }
+
+    @Test 
+    public void testIterate(){
+        when(list.size()).thenReturn(1,2,3,4);
+        //when(list.size()).thenReturn(1).thenReturn(2).thenReturn(3).thenReturn(4);
+        assertThat(list.size(),equalTo(1));
+    }
+
+    @Test
+    public void testStubbingWithAnswer() {
+        when(list.get(anyInt())).thenAnswer(invocation -&amp;gt; {
+            Integer index = invocation.getArgument(0);
+            return String.valueOf(index * 10);
+        });
+        assertThat(list.get(2),equalTo(&amp;quot;20&amp;quot;));
+    }
+
+    @After
+    public void destory(){
+        reset(this.list);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这种写法：when(list.size()).thenReturn(1,2,3,4);  等价于 when(list.size()).thenReturn(1).thenReturn(2).thenReturn(3).thenReturn(4);&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 ">Mockito</a>
