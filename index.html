@@ -5,18 +5,18 @@
   <meta charset="UTF-8" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta name="keywords" content="">
-<meta name="description" content="温故而知新">
-<meta name="theme-color" content="">
-<title>Gridea</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1627784380686">
-<link rel="stylesheet" href="/media/css/pisces.css">
+<meta name="keywords" content="geronk静态个人博客">
+<meta name="description" content="千里之行，始于足下">
+<meta name="theme-color" content="#000">
+<title>geronk学习笔记</title>
+<link rel="shortcut icon" href="/favicon.ico?v=1627784672478">
+<link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
   href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
   rel="stylesheet" type="text/css">
 
-<link href="/media/hljs/styles/github.css"
+<link href="/media/hljs/styles/default.css"
   rel="stylesheet">
 
 <link rel="stylesheet" href="/styles/main.css">
@@ -47,9 +47,9 @@
   <div class="head-top-line"></div>
   <div class="header-box">
     
-<div class="pisces">
-  <header class="header  ">
-    <div class="blog-header box-shadow-wrapper bg-color " id="header">
+<div class="mist">
+  <header class="header bg-color ">
+    <div class="blog-header box-shadow-wrapper  " id="header">
       <div class="nav-toggle" id="nav_toggle">
         <div class="toggle-box">
           <div class="line line-top"></div>
@@ -60,8 +60,14 @@
       <div class="site-meta">       
         <div class="site-title">
           
-            <a href="/" class="brand">
-              <span>Gridea</span>
+            <a href="/" class="">
+              <span class="logo-line-before">
+                <i class=""></i>
+              </span>
+              <span class="main-title">geronk学习笔记</span>
+              <span class="logo-line-after">
+                <i class=""></i>
+              </span>
             </a>  
           
         </div>
@@ -71,6 +77,8 @@
         <ul id="nav_ul">
           
             
+            
+              
             
             <li class="nav-item nav-item-active">
               
@@ -83,6 +91,8 @@
           
             
             
+              
+            
             <li class="nav-item ">
               
               
@@ -93,6 +103,8 @@
             </li>
           
             
+            
+              
             
             <li class="nav-item ">
               
@@ -105,6 +117,8 @@
           
             
             
+              
+            
             <li class="nav-item ">
               
               
@@ -115,6 +129,22 @@
             </li>
           
           
+            
+              <li class="nav-item ">
+                <a href="/friends/" target="_self">
+                  
+                    <i class="fa fa-address-book"></i> 友情链接
+                  
+                </a>
+              </li>
+            
+          
+          
+            <li id="fa_search" class="nav-item">
+              <a href="javascript:void(0);">
+                <i class="fa fa-search"></i> <span class="language" data-lan="search">搜索</span>
+              </a>
+            </li>
           
         </ul>
       </nav>
@@ -147,14 +177,14 @@
   <div class="main-continer">
     
     <div
-      class="section-layout pisces ">
+      class="section-layout mist bg-color">
       <div class="section-layout-wrapper">
         <div id="sidebarMeta" class="sidebar">
     
-<div class="sidebar-wrapper box-shadow-wrapper bg-color">
+<div class="sidebar-wrapper box-shadow-wrapper ">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
-    <p class="site-author-name"></p>
+    <p class="site-author-name">geronk</p>
     
   </div>
   <div class="sidebar-item side-item-stat right-motion">
@@ -179,10 +209,6 @@
     </div>
   </div>
   
-    
-  
-  
-
   
 
 
@@ -191,7 +217,7 @@
 </div>
 <script>
   let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = '';
+  let scheme = 'mist';
   let sidebarWrapper = document.querySelector('.sidebar-wrapper');
   if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
     document.addEventListener('scroll', function(e) {
@@ -203,7 +229,7 @@
     });
   }
   </script>
-        <div class="section-box pisces">
+        <div class="section-box mist">
           <section class="section bg-color posts-expand slide-down-in">
             
   <article class="post-list-box  post box-shadow-wrapper">
@@ -251,8 +277,10 @@
       <div class="post-body">
         
         
-          <p>主要使用mockito进行一些白盒测试，mockito的<a href="https://site.mockito.org/">官方网址</a></p>
+          
+            <p>主要使用mockito进行一些白盒测试，mockito的<a href="https://site.mockito.org/">官方网址</a></p>
 
+          
         
         
         <div class="post-button text-center">
@@ -306,22 +334,18 @@
   </footer>
   
   
-  <div class="pisces back-to-top" id="back_to_top">
+  <div class="drawer-box left" id="drawer_box">
+    <span class="muse-line muse-line-first"></span>
+    <span class="muse-line muse-line-middle"></span>
+    <span class="muse-line muse-line-last"></span>
+  </div>
+  
+  <div class="mist back-to-top" id="back_to_top">
     <i class="fa fa-arrow-up"></i>
-    
-    <span class="scrollpercent">
-      <span id="back_to_top_text">0</span>%
-    </span>
     
   </div>
   
   
-  
-  
-  
-  
-  
-
   
 </div>
 <script>
@@ -451,7 +475,7 @@
   }
 
   // 链接跳转
-  let newWindow = ''
+  let newWindow = 'false'
   if (newWindow === 'true') {
     let links = document.querySelectorAll('.post-body a')
     links.forEach(item => {
@@ -506,6 +530,174 @@
 
   </div>
 </body>
+
+<div class="search-mask" id="search_mask" style="display: none;">
+  <div class="search-box">
+    <div class="search-title">
+      <i class="fa fa-search"></i>
+      <div class="input-box">
+        <input id="search" type="text" class="language" data-lan="search" placeholder="搜索">
+      </div>
+      <i id="close" class="fa fa-times-circle"></i>
+    </div>
+    <div class="stat-box">
+      <span id="stat_count">0</span><span class="language" data-lan="stat">条相关条目，使用了</span><span id="stat_times">0</span><span class="language" data-lan="stat-time">毫秒</span>
+      <hr>
+    </div>
+    <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://geronk.github.io/post/mockito/"" data-c="
+          &lt;p&gt;主要使用mockito进行一些白盒测试，mockito的&lt;a href=&#34;https://site.mockito.org/&#34;&gt;官方网址&lt;/a&gt;&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;新建maven工程&lt;br&gt;
+&lt;img src=&#34;https://geronk.github.io/post-images/1627784371075.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;引入mockito相关maven依赖&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;     &amp;lt;dependency&amp;gt;
+ 		&amp;lt;groupId&amp;gt;org.mockito&amp;lt;/groupId&amp;gt;
+ 		&amp;lt;artifactId&amp;gt;mockito-core&amp;lt;/artifactId&amp;gt;
+ 		&amp;lt;version&amp;gt;2.23.4&amp;lt;/version&amp;gt;
+ 		&amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+ 	&amp;lt;/dependency&amp;gt;
+
+ 	&amp;lt;dependency&amp;gt;
+ 		&amp;lt;groupId&amp;gt;org.junit.jupiter&amp;lt;/groupId&amp;gt;
+ 		&amp;lt;artifactId&amp;gt;junit-jupiter-api&amp;lt;/artifactId&amp;gt;
+ 		&amp;lt;version&amp;gt;5.3.2&amp;lt;/version&amp;gt;
+ 		&amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+ 	&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+">Mockito</a>
+      </div>
+      
+    </div>
+    <div class="page">
+      <div id="page_ul"></div>
+    </div>
+  </div>
+</div>
+<script>
+  !function () {
+    let searchMask = document.querySelector('#search_mask');
+    let result = document.querySelector('#result');
+    let items = document.querySelectorAll('.item');
+    let searchBox = document.querySelector('#search');
+    let statCount = document.querySelector('#stat_count');
+    let statTimes = document.querySelector('#stat_times');
+    let pageUl = document.querySelector('#page_ul');
+    let close = document.querySelector('#close');
+    
+    close.addEventListener('click', function() {
+      searchMask.style = 'display: none;'
+    })
+
+    let finds = [];
+    let contents = [];
+    let pageSize = 10;
+    items.forEach(item => {
+      let a = item.querySelector('a');
+      contents.push({
+        title: a.innerText,
+        details: a.dataset.c,
+        link: a.href
+      })
+      item.remove();
+    })
+
+    function insertStr(soure, start, count) {
+      let newStr = soure.substr(start, count);
+      return soure.slice(0, start) + '<em>' + newStr + '</em>' + soure.slice(start + count);
+    }
+
+    pageUl.addEventListener('click', function(event) {
+      let target = event.target;
+      if (target.__proto__ === HTMLSpanElement.prototype) {
+        appendResults(parseInt(target.dataset.i));
+      }
+    })
+
+    function appendResults(index) {
+      let htmlResult = '';
+      let start = index || 0;
+      let end = Math.min(start + pageSize, finds.length);
+      for (let i = start; i < end; i++) {
+        const current = finds[i];
+        let html = current.title;
+        let sum = 0;
+        let positions = current.positions;
+        positions.forEach(position => {
+          html = insertStr(html, position.start + sum, position.count);
+          sum += 9;
+        })
+        htmlResult += `<div class="item"><a class="result-title" href="${current.link}">${html}</a></div>`;
+      }
+      result.innerHTML = htmlResult;
+      pageUl.innerHTML = '';
+      let count = finds.length / pageSize;
+      let lis = '';
+      if (start !== 0) {
+        lis += `<span class="fa fa-angle-left" data-i='${start - 1}'></span>`;
+      }
+      for (let i = 0; i < count; i++) {
+        lis += `<span class='${i === start?'current':''}' data-i='${i}'>${i+1}</span>`;     
+      }
+      if (start+1 < count) {
+        lis += `<span class="fa fa-angle-right" data-i='${start+1}'></span>`;  
+      }
+      pageUl.innerHTML = lis;
+    }
+
+    function search(delay) {
+      let timer = null
+      return function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          let start = Date.now();
+          let segments = searchBox.value.split(' ').filter(c => c != '');
+          if (segments.length <= 0) {
+            return;
+          }
+          finds = [];
+          let htmlResult = '';
+          contents.forEach(content => {
+            let title = content.title;
+            let positions = [];
+            let find = false;
+            segments.forEach((segment) => {
+              if (content.title.includes(segment)) {
+                find = true;
+                positions.push({
+                  start: content.title.indexOf(segment),
+                  count: segment.length
+                })
+              } else if (content.details.includes(segment)) {
+                find = true;
+              }
+            });
+            if (find) {
+              finds.push({
+                title: content.title,
+                link: content.link,
+                positions
+              });
+            }
+          })
+          appendResults(0);
+          statCount.textContent = finds.length;
+          statTimes.textContent = Date.now() - start;
+        }, delay)
+      }
+    }
+    searchBox.addEventListener('input', search(200));
+  }()
+</script>
 
 <input hidden id="copy" />
 <script>
@@ -677,8 +869,12 @@
 </script>
 
 
+<script src="/media/js/mouse/peace.js"></script>
 
 
+
+
+<script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script>
 
 
 </html>
